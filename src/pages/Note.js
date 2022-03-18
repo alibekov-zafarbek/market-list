@@ -8,18 +8,20 @@ const Note = (props) => {
   let { id } = useParams();
   let noteId = id;
 
+  console.log(note);
+
   useEffect(() => {
     getNode();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noteId]);
 
   const getNode = async () => {
-    const response = await fetch(`http://localhost:5000/notes/${noteId}`);
+    const response = await fetch(`https://fake-server-app-alibekoff.herokuapp.com/notes/${noteId}`);
     const data = await response.json();
     setNote(data);
   };
   const createNode = async() => {
-    await fetch(`http://localhost:5000/notes`, {
+    await fetch(`https://fake-server-app-alibekoff.herokuapp.com/notes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +32,7 @@ const Note = (props) => {
   }
 
   const updateNode = async () => {
-    await fetch(`http://localhost:5000/notes/${noteId}`, {
+    await fetch(`https://fake-server-app-alibekoff.herokuapp.com/notes/${noteId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +42,7 @@ const Note = (props) => {
   };
 
   const deleteNote = async () => {
-    await fetch(`http://localhost:5000/notes/${noteId}`, {
+    await fetch(`https://fake-server-app-alibekoff.herokuapp.com/notes/${noteId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
